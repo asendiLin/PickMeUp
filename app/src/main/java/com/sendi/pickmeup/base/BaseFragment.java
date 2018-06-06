@@ -1,6 +1,5 @@
 package com.sendi.pickmeup.base;
 
-import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
