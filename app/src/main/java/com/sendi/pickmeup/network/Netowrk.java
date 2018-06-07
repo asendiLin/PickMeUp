@@ -22,11 +22,11 @@ import okhttp3.Response;
  */
 
 public class Netowrk {
-    private static OkHttpClient mOkHttpClient=initOkHttpClient();
+    private static OkHttpClient mOkHttpClient = initOkHttpClient();
 
-    private static OkHttpClient initOkHttpClient(){
+    private static OkHttpClient initOkHttpClient() {
 
-        OkHttpClient.Builder builder=new OkHttpClient.Builder();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
         builder.writeTimeout(5, TimeUnit.SECONDS);
         builder.readTimeout(5, TimeUnit.SECONDS);
@@ -34,21 +34,32 @@ public class Netowrk {
         return builder.build();
     }
 
+//get请求
+    public static <R> void executeGet(String url, final ResultListener<R> listener) {
 
-    public static<R> void execute(String url, Map<String,String>map, final ResultListener<R> listener){
-        FormBody.Builder builder= new FormBody.Builder();
+        final Request request = new Request.Builder().url(url).get().build();
 
-        Set<String> keySet=map.keySet();
+        execute(request, listener);
 
-        for (String key:keySet){
-            builder.add(key,map.get(key));
+    }
+//post请求
+    public static <R> void executePost(String url, Map<String, String> map, final ResultListener<R> listener) {
+        FormBody.Builder builder = new FormBody.Builder();
+
+        if (map != null) {
+            Set<String> keySet = map.keySet();
+
+            for (String key : keySet) {
+                builder.add(key, map.get(key));
+            }
         }
 
-        FormBody requestBody=builder.build();
 
-        final Request request=new Request.Builder().url(url).post(requestBody).build();
+        FormBody requestBody = builder.build();
 
-        execute(request,listener);
+        final Request request = new Request.Builder().url(url).post(requestBody).build();
+
+        execute(request, listener);
 
     }
 
@@ -61,16 +72,17 @@ public class Netowrk {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                String responseStr=response.body().string();
+                String responseStr = response.body().string();
 
-                Gson gson=new Gson();
+                Gson gson = new Gson();
 
-                BaseEntity<R> baseEntity=gson.fromJson(responseStr,new TypeToken<BaseEntity<R>>(){}.getType());
+                BaseEntity<R> baseEntity = gson.fromJson(responseStr, new TypeToken<BaseEntity<R>>() {
+                }.getType());
 
 
-                if (baseEntity.isSuccess()){
+                if (baseEntity.isSuccess()) {
                     listener.onSuccess(baseEntity.getData());
-                }else {
+                } else {
                     listener.onCodeError(baseEntity.getMsg());
                 }
             }

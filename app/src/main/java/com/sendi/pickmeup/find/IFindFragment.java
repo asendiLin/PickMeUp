@@ -15,6 +15,12 @@ public interface IFindFragment {
     void showOrderList(List<Journey> journeyList);
 
     /**
+     * 加载失败
+     * @param msg
+     */
+    void loadOrderFail(String msg);
+
+    /**
      * 接单成功
      */
     void takeOrderSuccess();
@@ -22,6 +28,6 @@ public interface IFindFragment {
     /**
      * 接单失败
      */
-    void takeOrderFail();
+    void takeOrderFail(String msg);
 
 }

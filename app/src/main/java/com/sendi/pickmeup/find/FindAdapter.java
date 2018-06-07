@@ -19,6 +19,11 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder
 
     private Context mContext;
     private List<Journey> mJourneyList;
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
 
     public FindAdapter(Context context, List<Journey> journeyList) {
         mContext = context;
@@ -35,12 +40,20 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder
 
     @Override
     public void onBindViewHolder(FindViewHolder holder, int position) {
-        Journey journey=mJourneyList.get(position);
+        final Journey journey = mJourneyList.get(position);
 
         holder.txtStartTime.setText(journey.getStart_time());
         holder.txtStartPlace.setText(journey.getFrom_place());
         holder.txtEndPlace.setText(journey.getTo_place());
         holder.txtPrice.setText(journey.getPrice());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null)
+                    mOnItemClickListener.onClick(journey);
+            }
+        });
     }
 
     @Override
@@ -66,5 +79,9 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder
             txtPrice = itemView.findViewById(R.id.txt_price);
 
         }
+    }
+
+    interface OnItemClickListener {
+        void onClick(Journey journey);
     }
 }

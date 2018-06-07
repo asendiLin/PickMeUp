@@ -22,4 +22,45 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
+    <!--publish style-->
+    <style name="publish_linear_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_margin">@dimen/margin_10</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+    <style name="publish_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/txt_14</item>
+    </style>
+    <style name="publish_edit_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/space_30</item>
+        <item name="android:layout_marginLeft">@dimen/margin_10</item>
+        <item name="android:background">@drawable/edit_shape</item>
+    </style>
+
+
+    <style name="select_time_piker">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!--底部弹框的样式-->
+    <style name="dialog_bottom_filter">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="android:windowAnimationStyle">@style/dialog_bottom_anim_in_out</item>-->
+    </style>
 </resources>

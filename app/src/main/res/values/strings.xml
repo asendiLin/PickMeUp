@@ -2,8 +2,20 @@
     <string name="app_name">PickMeUp</string>
 
     <!-- 发现界面 -->
-    <string name="start_time_str">出发时间</string>
-    <string name="start_place_str">出发地点</string>
-    <string name="price_str">预计价格</string>
-    <string name="end_place_str">目标地点</string>
+    <string name="start_time_str">出发时间：</string>
+    <string name="start_place_str">出发地点：</string>
+    <string name="price_str">预计价格：</string>
+    <string name="end_place_str">目标地点：</string>
+
+    <string name="error_str">没加载到数据@^_^@</string>
+    <string name="reload_str">戳我试试</string>
+
+    <!--发布界面-->
+    <string name="warm_title_str">发布需求请填写下列信息</string>
+    <string name="name_str">乘客姓名：</string>
+    <string name="phone_str">手机号码：</string>
+    <string name="publish_str">发布</string>
+
+    <string name="str_yes">确定</string>
+    <string name="str_no">取消</string>
 </resources>
