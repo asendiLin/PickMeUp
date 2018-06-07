@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- find item style -->
+    <style name="find_item_text_dy">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_16</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:paddingTop">@dimen/padding_5</item>
+        <item name="android:paddingBottom">@dimen/padding_5</item>
+    </style>
+
+    <style name="find_item_text_str">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

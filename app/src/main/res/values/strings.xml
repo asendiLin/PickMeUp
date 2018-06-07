@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PickMeUp</string>
+
+    <!-- 发现界面 -->
+    <string name="start_time_str">出发时间</string>
+    <string name="start_place_str">出发地点</string>
+    <string name="price_str">预计价格</string>
+    <string name="end_place_str">目标地点</string>
 </resources>

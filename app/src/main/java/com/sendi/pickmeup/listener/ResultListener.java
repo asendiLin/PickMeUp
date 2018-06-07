@@ -7,7 +7,7 @@ import com.sendi.pickmeup.base.BaseEntity;
  */
 
 public interface ResultListener<T> {
-    void onSuccess(BaseEntity<T> data);
+    void onSuccess(T data);
     void onFail(Throwable throwable);
     void onCodeError(String msg);
 }
