@@ -3,7 +3,7 @@ package com.sendi.pickmeup.base;
 import com.sendi.pickmeup.config.Config;
 
 /**
- * Created by Administrator on 2018/6/2.
+ * Created by sendi on 2018/6/2.
  */
 
 public class BaseEntity<T> {

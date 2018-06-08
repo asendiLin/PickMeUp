@@ -44,12 +44,14 @@
             <NumberPicker
                 android:id="@+id/snp_hour"
                 style="@style/select_time_piker"
-                ></NumberPicker>
+                android:layout_marginLeft="@dimen/margin_60"
+                />
 
             <NumberPicker
                 android:id="@+id/snp_minute"
                 style="@style/select_time_piker"
-                ></NumberPicker>
+                android:layout_marginRight="@dimen/margin_60"
+                />
         </LinearLayout>
 
     </LinearLayout>

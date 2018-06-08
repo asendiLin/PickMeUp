@@ -10,7 +10,12 @@ import android.widget.TextView;
 
 import com.sendi.pickmeup.R;
 import com.sendi.pickmeup.base.BaseFragment;
+import com.sendi.pickmeup.listener.ResultListener;
+import com.sendi.pickmeup.network.Network;
 import com.sendi.pickmeup.utils.SelectTimePickerDialogUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by sendi on 2018/6/7.
@@ -63,6 +68,40 @@ public class PublishFragment extends BaseFragment implements IPublishFragment {
             @Override
             public void onClick(View v) {
                 //ToDo:post info
+                String name=editName.getText().toString().trim();
+                String number=editNumber.getText().toString().trim();
+                String startTime=txtStartTime.getText().toString().trim();
+                String startPlace=editStartPlace.getText().toString().trim();
+                String endPlace=editEndPlace.getText().toString().trim();
+                String price=editPrice.getText().toString().trim();
+
+                Map<String,String> map=new HashMap<>();
+
+                map.put("start_time",startTime);
+                map.put("from_place",startPlace);
+                map.put("to_place",endPlace);
+                map.put("price",price);
+                map.put("u_name",name);
+                map.put("u_id","u_id");
+                map.put("phone",number);
+
+                Network.executePost("http://192.168.1.109:8081/journey/addJourney", map, new ResultListener<String>() {
+                    @Override
+                    public void onSuccess(String data) {
+
+                    }
+
+                    @Override
+                    public void onFail(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onCodeError(String msg) {
+
+                    }
+                },String.class);
+
             }
         });
 
@@ -76,6 +115,7 @@ public class PublishFragment extends BaseFragment implements IPublishFragment {
                             @Override
                             public void onSelectedTime(String showSelectedTimeStr) {
                                 txtStartTime.setText(showSelectedTimeStr);
+
                             }
                         }).build();
                 pickerDialogUtil.showSelectDialog();

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sendi.pickmeup.R;
-import com.sendi.pickmeup.entity.Journey;
+import com.sendi.pickmeup.entity.JourneyList;
 
 import java.util.List;
 
@@ -18,14 +18,14 @@ import java.util.List;
 public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder> {
 
     private Context mContext;
-    private List<Journey> mJourneyList;
+    private List<JourneyList.Journey> mJourneyList;
     private OnItemClickListener mOnItemClickListener;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
 
-    public FindAdapter(Context context, List<Journey> journeyList) {
+    public FindAdapter(Context context, List<JourneyList.Journey> journeyList) {
         mContext = context;
         mJourneyList = journeyList;
     }
@@ -40,7 +40,7 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder
 
     @Override
     public void onBindViewHolder(FindViewHolder holder, int position) {
-        final Journey journey = mJourneyList.get(position);
+        final JourneyList.Journey journey = mJourneyList.get(position);
 
         holder.txtStartTime.setText(journey.getStart_time());
         holder.txtStartPlace.setText(journey.getFrom_place());
@@ -82,6 +82,6 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder
     }
 
     interface OnItemClickListener {
-        void onClick(Journey journey);
+        void onClick(JourneyList.Journey journey);
     }
 }

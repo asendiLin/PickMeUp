@@ -43,6 +43,7 @@
         <item name="android:layout_height">@dimen/space_30</item>
         <item name="android:layout_marginLeft">@dimen/margin_10</item>
         <item name="android:background">@drawable/edit_shape</item>
+        <item name="android:padding">@dimen/padding_5</item>
     </style>
 
 
@@ -60,7 +61,7 @@
         <item name="android:windowFrame">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
         <!--<item name="android:windowAnimationStyle">@style/dialog_bottom_anim_in_out</item>-->
     </style>
     <!--首页RadioButton的Style-->

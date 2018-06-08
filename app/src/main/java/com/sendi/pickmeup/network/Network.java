@@ -3,18 +3,13 @@ package com.sendi.pickmeup.network;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import com.sendi.pickmeup.base.BaseEntity;
-import com.sendi.pickmeup.entity.User;
 import com.sendi.pickmeup.listener.ResultListener;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -30,7 +25,7 @@ import okhttp3.Response;
  * Created by asendi on 2018/6/6.
  */
 
-public class Netowrk{
+public class Network {
     private static OkHttpClient mOkHttpClient = initOkHttpClient();
 
     private static OkHttpClient initOkHttpClient() {
@@ -121,7 +116,6 @@ public class Netowrk{
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
                 String responseStr = response.body().string();
 
                 Gson gson = new Gson();
@@ -146,6 +140,35 @@ public class Netowrk{
                     handler.sendMessage(message);
 //                    listener.onCodeError(baseEntity.getMsg());
 
+                }
+            }
+        });
+    }
+
+
+    public static void getResponseJsonData(String url, final ResultListener<String> listener){
+        Request request=new Request.Builder().url(url).get().build();
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                listener.onFail(e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String responseStr = response.body().string();
+
+                Gson gson = new Gson();
+
+                BaseEntity baseEntity = gson.fromJson(responseStr, new TypeToken<BaseEntity>() {
+                }.getType());
+
+
+                if (baseEntity.isSuccess()) {
+                    String jsonStr=gson.toJson(baseEntity.getData());
+                    listener.onSuccess(jsonStr);
+                } else {
+                    listener.onCodeError(baseEntity.getMsg());
                 }
             }
         });

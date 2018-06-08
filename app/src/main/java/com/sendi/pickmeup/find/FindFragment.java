@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.sendi.pickmeup.R;
 import com.sendi.pickmeup.base.BaseFragment;
-import com.sendi.pickmeup.entity.Journey;
+import com.sendi.pickmeup.entity.JourneyList;
 import com.sendi.pickmeup.listener.ResultListener;
-import com.sendi.pickmeup.network.Netowrk;
+import com.sendi.pickmeup.network.Network;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     private static final String TAG = "FindFragment";
     private RecyclerView mRecyclerView;
     private FindAdapter mFindAdapter;
-    private List<Journey> mJourneyList = new ArrayList<>();//行程列表
+    private List<JourneyList.Journey> mJourneyList = new ArrayList<>();//行程列表
 
     private static FindFragment instance;
 
@@ -47,7 +47,7 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     }
 
     @Override
-    public void showOrderList(List<Journey> journeyList) {
+    public void showOrderList(List<JourneyList.Journey> journeyList) {
 
         if (errorView != null)
             errorView.setVisibility(View.GONE);
@@ -99,8 +99,8 @@ public class FindFragment extends BaseFragment implements IFindFragment {
 
         mFindAdapter.setOnItemClickListener(new FindAdapter.OnItemClickListener() {
             @Override
-            public void onClick(Journey journey) {
-                Netowrk.executePost("url", null, new ResultListener<String>() {
+            public void onClick(JourneyList.Journey journey) {
+                Network.executePost("url", null, new ResultListener<String>() {
                     @Override
                     public void onSuccess(String data) {
                         takeOrderSuccess();
@@ -125,23 +125,21 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     @Override
     public void onStart() {
         super.onStart();
-        //toDo:发起网络请求
-//        Netowrk.executeGet("url", new ResultListener<List<Journey>>() {
-//            @Override
-//            public void onSuccess(List<Journey> data) {
-//                showOrderList(data);
-//            }
-//
-//            @Override
-//            public void onFail(Throwable throwable) {
-//                Log.e(TAG, "onFail: ", throwable.getCause());
-//                loadOrderFail(getString(R.string.error_str));
-//            }
-//
-//            @Override
-//            public void onCodeError(String msg) {
-//                loadOrderFail(msg);
-//            }
-//        });
+        Network.getResponseJsonData("", new ResultListener<String>() {
+            @Override
+            public void onSuccess(String data) {
+
+            }
+
+            @Override
+            public void onFail(Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCodeError(String msg) {
+
+            }
+        });
     }
 }

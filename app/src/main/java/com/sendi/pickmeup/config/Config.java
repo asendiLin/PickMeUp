@@ -16,6 +16,9 @@ public class Config {
     public final static String PUBLISH_URL="";
     public final static String ME_URL="";
     public final static String FEEDBACK_URL="";//反馈
+
+
+    public final static String USER_ID="";//用户id
 //    public final static String ME_URL="";
 
 

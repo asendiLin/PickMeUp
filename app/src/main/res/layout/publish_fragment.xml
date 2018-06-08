@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="@dimen/txt_12"
-    android:textColor="@color/colorBlack"
-    android:text="@string/warm_title_str"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginTop="@dimen/margin_20"
-    android:paddingBottom="@dimen/padding_15"
-    />
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingLeft="@dimen/padding_20"
+              android:paddingRight="@dimen/padding_20">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_20"
+        android:paddingBottom="@dimen/padding_15"
+        android:text="@string/warm_title_str"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/txt_12"
+        />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_1"
-        android:background="@color/colorBlack"
-        android:layout_marginLeft="@dimen/margin_100"
-        android:layout_marginRight="@dimen/margin_100"
-        android:layout_marginBottom="@dimen/margin_40"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:layout_marginLeft="@dimen/margin_120"
+        android:layout_marginRight="@dimen/margin_120"
+        android:background="@color/colorThem"
         />
 
     <LinearLayout
         style="@style/publish_linear_style"
         >
+
         <TextView
             style="@style/publish_text_style"
             android:text="@string/name_str"
             />
+
         <EditText
             android:id="@+id/edit_name"
             style="@style/publish_edit_style"/>
@@ -37,10 +43,12 @@
     <LinearLayout
         style="@style/publish_linear_style"
         >
+
         <TextView
             style="@style/publish_text_style"
             android:text="@string/phone_str"
             />
+
         <EditText
             android:id="@+id/edit_number"
             style="@style/publish_edit_style"/>
@@ -50,10 +58,12 @@
         style="@style/publish_linear_style"
 
         >
+
         <TextView
             style="@style/publish_text_style"
             android:text="@string/start_time_str"
             />
+
         <TextView
             android:id="@+id/txt_start_time"
             style="@style/publish_edit_style"/>
@@ -66,6 +76,7 @@
             style="@style/publish_text_style"
             android:text="@string/start_place_str"
             />
+
         <EditText
             android:id="@+id/edit_start_place"
             style="@style/publish_edit_style"/>
@@ -74,10 +85,12 @@
     <LinearLayout
         style="@style/publish_linear_style"
         >
+
         <TextView
             style="@style/publish_text_style"
             android:text="@string/end_place_str"
             />
+
         <EditText
             android:id="@+id/edit_end_place"
             style="@style/publish_edit_style"/>
@@ -86,20 +99,26 @@
     <LinearLayout
         style="@style/publish_linear_style"
         >
+
         <TextView
             style="@style/publish_text_style"
             android:text="@string/price_str"
             />
+
         <EditText
             android:id="@+id/edit_price"
             style="@style/publish_edit_style"/>
     </LinearLayout>
 
     <Button
-        android:layout_marginTop="@dimen/margin_20"
         android:id="@+id/btn_publish"
-        style="@style/me_btn_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_100"
+        android:layout_marginRight="@dimen/margin_100"
+        android:layout_marginTop="@dimen/margin_40"
+        android:background="@drawable/btn_shape"
         android:text="@string/publish_str"
-
+        android:textColor="@color/colorThem"
         />
 </LinearLayout>

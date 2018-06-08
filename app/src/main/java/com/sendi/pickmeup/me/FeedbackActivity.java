@@ -14,7 +14,7 @@ import com.sendi.pickmeup.R;
 import com.sendi.pickmeup.base.BaseActivity;
 import com.sendi.pickmeup.listener.ResultListener;
 import com.sendi.pickmeup.login.LoginActivity;
-import com.sendi.pickmeup.network.Netowrk;
+import com.sendi.pickmeup.network.Network;
 import com.sendi.pickmeup.utils.ActivityController;
 
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class FeedbackActivity extends BaseActivity {
 
                     HashMap<String, String> map = new HashMap<>();
                     map.put("feedback", feedback);
-                    Netowrk.executePost("", map, new ResultListener<String>() {
+                    Network.executePost("", map, new ResultListener<String>() {
 
                         @Override
                         public void onSuccess(String data) {

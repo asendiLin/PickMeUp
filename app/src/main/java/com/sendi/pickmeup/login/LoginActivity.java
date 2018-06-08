@@ -18,7 +18,7 @@ import com.sendi.pickmeup.R;
 import com.sendi.pickmeup.base.BaseActivity;
 import com.sendi.pickmeup.entity.User;
 import com.sendi.pickmeup.listener.ResultListener;
-import com.sendi.pickmeup.network.Netowrk;
+import com.sendi.pickmeup.network.Network;
 import com.sendi.pickmeup.register.RegisterActivity;
 import com.sendi.pickmeup.utils.ActivityController;
 
@@ -85,7 +85,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             final HashMap<String, String> map = new HashMap<>();
             map.put("username", username);
             map.put("psw", password);
-            Netowrk.executePost("http://192.168.1.109:8081/pickmeup/Login/userLogin", map, new ResultListener<User>() {
+            Network.executePost("http://192.168.1.109:8081/pickmeup/Login/userLogin", map, new ResultListener<User>() {
 
                 @Override
                 public void onSuccess(User data) {

@@ -1,6 +1,5 @@
 package com.sendi.pickmeup.listener;
 
-import com.sendi.pickmeup.base.BaseEntity;
 
 /**
  * Created by sendi on 2018/6/6.
