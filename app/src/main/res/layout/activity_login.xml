@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sendi.pickmeup.login.LoginActivity">
+    <include layout="@layout/title_bar"/>
+
+    <LinearLayout
+        android:id="@+id/ll_username"
+        android:layout_marginTop="@dimen/margin_100"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/space_xl"
+        android:layout_marginRight="@dimen/space_xl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:paddingLeft="@dimen/margin_5"
+            style="@style/UsernameEditTextStyle"
+            android:hint="@string/str_username"
+            android:id="@+id/edit_login_username" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_password"
+        android:layout_below="@id/ll_username"
+        android:layout_marginTop="@dimen/space_m"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/space_xl"
+        android:layout_marginRight="@dimen/space_xl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:inputType="numberPassword"
+            android:paddingLeft="@dimen/margin_5"
+            android:hint="@string/str_password"
+            android:id="@+id/edit_login_password"
+            style="@style/PasswordEditTextStyle"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:text="@string/str_login"
+        android:layout_marginTop="@dimen/margin_40"
+        android:layout_below="@id/ll_password"
+        style="@style/me_btn_style" />
+
+    <RelativeLayout
+        android:layout_below="@id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txt_register"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/space_l"
+        android:layout_marginRight="@dimen/space_l"
+        android:textColor="@color/colorPink"
+        android:text="@string/str_registerNow"
+        android:textSize="@dimen/txt_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

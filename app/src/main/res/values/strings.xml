@@ -6,6 +6,7 @@
     <string name="start_place_str">出发地点：</string>
     <string name="price_str">预计价格：</string>
     <string name="end_place_str">目标地点：</string>
+    <string name="statue_str">订单状态：</string>
     <!--首页-->
     <string name="str_find">发现</string>
     <string name="str_publish">发布</string>
@@ -27,4 +28,16 @@
     <string name="str_journey">行程</string>
     <string name="str_feedback">反馈</string>
     <string name="str_post">提交</string>
+    <string name="str_feedback_hint">请输入你的反馈内容...</string>
+    <string name="str_vehicle_owne">车主</string>
+    <string name="str_passenger">乘客</string>
+    <string name="str_passenger_name">乘客姓名：</string>
+    <string name="str_passenger_phone">乘客电话：</string>
+    <!--登陆/注册页面-->
+    <string name="str_username">请输入账号...</string>
+    <string name="str_phone">请输入手机号码...</string>
+    <string name="str_password">请输入密码...</string>
+    <string name="str_login">登陆</string>
+    <string name="str_register">注册</string>
+    <string name="str_registerNow">立即注册</string>
 </resources>

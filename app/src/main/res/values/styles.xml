@@ -85,4 +85,29 @@
         <item name="android:checkable">true</item>
         <item name="android:background">@drawable/me_btn_background_selector</item>
     </style>
+    <!--乘客行程TextView样式-->
+    <style name="passenger_txt_style">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/txt_16</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!--登陆注册界面账户输入框的的Style-->
+    <style name="UsernameEditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_14</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorBlack</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+    </style>
+    <!--登陆注册界面密码输入框的的Style-->
+    <style name="PasswordEditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/txt_14</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorBlack</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_color</item>
+    </style>
 </resources>

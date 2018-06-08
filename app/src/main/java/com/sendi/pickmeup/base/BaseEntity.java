@@ -39,4 +39,5 @@ public class BaseEntity<T> {
     public boolean isSuccess(){
         return code== Config.SUCCESS_CODE;
     }
+
 }

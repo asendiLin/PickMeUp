@@ -96,13 +96,10 @@
     </LinearLayout>
 
     <Button
+        android:layout_marginTop="@dimen/margin_20"
         android:id="@+id/btn_publish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/me_btn_style"
         android:text="@string/publish_str"
-        android:layout_marginLeft="@dimen/margin_100"
-        android:layout_marginRight="@dimen/margin_100"
-        android:layout_marginTop="@dimen/margin_40"
-        android:background="@drawable/btn_shape"
+
         />
 </LinearLayout>

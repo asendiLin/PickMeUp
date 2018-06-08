@@ -116,7 +116,7 @@ public class FindFragment extends BaseFragment implements IFindFragment {
                     public void onCodeError(String msg) {
                         takeOrderFail(msg);
                     }
-                });
+                },String.class);
             }
         });
         return view;

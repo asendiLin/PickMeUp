@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sendi.pickmeup.register.RegisterActivity">
+    <include layout="@layout/title_bar"/>
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_100"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/space_xl"
+        android:layout_marginRight="@dimen/space_xl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:paddingLeft="@dimen/margin_5"
+            style="@style/UsernameEditTextStyle"
+            android:hint="@string/str_username"
+            android:id="@+id/edit_register_username" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/space_m"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/space_xl"
+        android:layout_marginRight="@dimen/space_xl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:inputType="numberPassword"
+            android:paddingLeft="@dimen/margin_5"
+            android:hint="@string/str_password"
+            android:id="@+id/edit_register_password"
+            style="@style/PasswordEditTextStyle"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/space_m"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/space_xl"
+        android:layout_marginRight="@dimen/space_xl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:inputType="phone"
+            android:paddingLeft="@dimen/margin_5"
+            android:hint="@string/str_phone"
+            android:id="@+id/edit_register_phone"
+            style="@style/PasswordEditTextStyle"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:text="@string/str_register"
+        android:layout_marginTop="@dimen/margin_40"
+        style="@style/me_btn_style" />
+</LinearLayout>
