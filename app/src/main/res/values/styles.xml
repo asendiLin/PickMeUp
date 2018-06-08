@@ -63,4 +63,26 @@
         <item name="android:windowIsTranslucent">true</item>
         <!--<item name="android:windowAnimationStyle">@style/dialog_bottom_anim_in_out</item>-->
     </style>
+    <!--首页RadioButton的Style-->
+    <style name="main_btn_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@drawable/bottom_btn_text_selector</item>
+        <item name="android:textSize">@dimen/txt_16</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!--我的页面Button的Style-->
+    <style name="me_btn_style">
+        <item name="android:layout_marginLeft">@dimen/space_xxl</item>
+        <item name="android:layout_marginRight">@dimen/space_xxl</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@drawable/me_btn_color_selector</item>
+        <item name="android:textSize">@dimen/txt_14</item>
+        <item name="android:checkable">true</item>
+        <item name="android:background">@drawable/me_btn_background_selector</item>
+    </style>
 </resources>

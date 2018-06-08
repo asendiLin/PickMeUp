@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/image_me"
+    android:layout_marginTop="@dimen/margin_60"
+    android:layout_gravity="center"
+    android:src="@drawable/ic_earl"
+    app:civ_border_width="4dp"
+    app:civ_border_color="@color/colorPink"
+    android:layout_width="@dimen/space_xxl"
+    android:layout_height="@dimen/space_xxl" />
+<TextView
+    android:id="@+id/txt_name"
+    android:layout_marginTop="@dimen/margin_20"
+    android:textSize="@dimen/txt_16"
+    android:textColor="@color/colorPink"
+    android:text="@string/str_name"
+    android:textStyle="bold"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_journey"
+        android:text="@string/str_journey"
+        android:layout_marginTop="@dimen/margin_60"
+        style="@style/me_btn_style" />
+    <Button
+        android:id="@+id/btn_feedback"
+        android:text="@string/str_feedback"
+        android:layout_marginTop="@dimen/margin_10"
+        style="@style/me_btn_style"/>
+</LinearLayout>

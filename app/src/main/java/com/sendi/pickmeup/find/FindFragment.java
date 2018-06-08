@@ -126,22 +126,22 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     public void onStart() {
         super.onStart();
         //toDo:发起网络请求
-        Netowrk.executeGet("url", new ResultListener<List<Journey>>() {
-            @Override
-            public void onSuccess(List<Journey> data) {
-                showOrderList(data);
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-                Log.e(TAG, "onFail: ", throwable.getCause());
-                loadOrderFail(getString(R.string.error_str));
-            }
-
-            @Override
-            public void onCodeError(String msg) {
-                loadOrderFail(msg);
-            }
-        });
+//        Netowrk.executeGet("url", new ResultListener<List<Journey>>() {
+//            @Override
+//            public void onSuccess(List<Journey> data) {
+//                showOrderList(data);
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//                Log.e(TAG, "onFail: ", throwable.getCause());
+//                loadOrderFail(getString(R.string.error_str));
+//            }
+//
+//            @Override
+//            public void onCodeError(String msg) {
+//                loadOrderFail(msg);
+//            }
+//        });
     }
 }
