@@ -43,47 +43,45 @@ public class Network {
     private static final int MESSAGE_ONFAIL = 1;
     private static final int MESSAGE_ONCODEERROR = 2;
 
-     private static ResultListener mListener;
 
-     private static Handler handler = new Handler(Looper.getMainLooper()){
-
-
+    private static Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+
+            Result result = (Result) msg.obj;
+            ResultListener listener = result.mResultListener;
+            Object data = result.data;
+            switch (msg.what) {
                 case MESSAGE_ONSUCCESS:
-                    Object object = msg.obj;
-                    mListener.onSuccess(object);
+                    if (listener != null)
+                        listener.onSuccess(data);
                     break;
                 case MESSAGE_ONFAIL:
-                    IOException e = (IOException) msg.obj;
-                    mListener.onFail(e);
+                    if (listener != null)
+                        listener.onFail((Throwable) data);
                     break;
                 case MESSAGE_ONCODEERROR:
-                    String message = (String) msg.obj;
-                    mListener.onCodeError(message);
+                    if (listener != null)
+                        listener.onCodeError((String) data);
                     break;
             }
         }
     };
 
 
-
-//get请求
-    public static <R> void executeGet(String url, final ResultListener<R> listener,final Class<R> clazz) {
-
-        mListener = listener;
+    //get请求
+    public static <R> void executeGet(String url, final ResultListener<R> listener, final Class<R> clazz) {
 
         final Request request = new Request.Builder().url(url).get().build();
 
-        execute(request, listener,clazz);
+        execute(request, listener, clazz);
 
     }
-//post请求
-    public static <R> void executePost(String url, Map<String, String> map, final ResultListener<R> listener,Class<R> clazz) {
+
+    //post请求
+    public static <R> void executePost(String url, Map<String, String> map, final ResultListener<R> listener, Class<R> clazz) {
         FormBody.Builder builder = new FormBody.Builder();
-        mListener = listener;
 
         if (map != null) {
             Set<String> keySet = map.keySet();
@@ -98,18 +96,18 @@ public class Network {
 
         final Request request = new Request.Builder().url(url).post(requestBody).build();
 
-        execute(request, listener,clazz);
+        execute(request, listener, clazz);
 
     }
 
-    private static <R> void execute(Request request,final ResultListener<R> listener,final Class<R> clazz) {
-        mListener = listener;
+    private static <R> void execute(final Request request, final ResultListener<R> listener, final Class<R> clazz) {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Result result = new Result(e, listener);
                 Message message = new Message();
                 message.what = MESSAGE_ONFAIL;
-                message.obj = e;
+                message.obj = result;
 //                listener.onFail(e);
                 handler.sendMessage(message);
             }
@@ -123,20 +121,22 @@ public class Network {
                 BaseEntity<R> baseEntity = gson.fromJson(responseStr, new TypeToken<BaseEntity<R>>() {
                 }.getType());
 
-
+                Result result = null;
                 if (baseEntity.isSuccess()) {
-                    String jsonStr=gson.toJson(baseEntity.getData());
-                    R data=gson.fromJson(jsonStr,clazz);
-//                    Log.i("TAG", "onResponse: "+data);
+                    String jsonStr = gson.toJson(baseEntity.getData());
+                    R data = gson.fromJson(jsonStr, clazz);
+//                  Log.i("TAG", "onResponse: "+data);
+                    result = new Result(data, listener);
                     Message message = new Message();
                     message.what = MESSAGE_ONSUCCESS;
-                    message.obj = data;
+                    message.obj = result;
                     handler.sendMessage(message);
 //                    listener.onSuccess(data);
                 } else {
+                    result = new Result(baseEntity.getMsg(), listener);
                     Message message = new Message();
                     message.what = MESSAGE_ONCODEERROR;
-                    message.obj = baseEntity.getMsg();
+                    message.obj = result;
                     handler.sendMessage(message);
 //                    listener.onCodeError(baseEntity.getMsg());
 
@@ -146,8 +146,8 @@ public class Network {
     }
 
 
-    public static void getResponseJsonData(String url, final ResultListener<String> listener){
-        Request request=new Request.Builder().url(url).get().build();
+    public static void getResponseJsonData(String url, final ResultListener<String> listener) {
+        Request request = new Request.Builder().url(url).get().build();
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -165,7 +165,7 @@ public class Network {
 
 
                 if (baseEntity.isSuccess()) {
-                    String jsonStr=gson.toJson(baseEntity.getData());
+                    String jsonStr = gson.toJson(baseEntity.getData());
                     listener.onSuccess(jsonStr);
                 } else {
                     listener.onCodeError(baseEntity.getMsg());
@@ -174,5 +174,13 @@ public class Network {
         });
     }
 
+    static class Result {
+        Object data;
+        ResultListener mResultListener;
 
+        public Result(Object data, ResultListener resultListener) {
+            this.data = data;
+            mResultListener = resultListener;
+        }
+    }
 }
