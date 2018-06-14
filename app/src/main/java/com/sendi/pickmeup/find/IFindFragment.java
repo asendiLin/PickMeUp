@@ -1,6 +1,6 @@
 package com.sendi.pickmeup.find;
 
-import com.sendi.pickmeup.entity.JourneyList;
+import com.sendi.pickmeup.entity.Journey;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface IFindFragment {
     /**
      * 展示行程列表
      */
-    void showOrderList(List<JourneyList.Journey> journeyList);
+    void showOrderList(List<Journey> journeyList);
 
     /**
      * 加载失败

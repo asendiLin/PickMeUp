@@ -2,16 +2,17 @@ package com.sendi.pickmeup.find;
 
 import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.sendi.pickmeup.R;
 import com.sendi.pickmeup.base.BaseFragment;
-import com.sendi.pickmeup.entity.JourneyList;
+import com.sendi.pickmeup.entity.Journey;
 import com.sendi.pickmeup.listener.ResultListener;
 import com.sendi.pickmeup.network.Network;
 
@@ -28,7 +29,7 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     private static final String TAG = "FindFragment";
     private RecyclerView mRecyclerView;
     private FindAdapter mFindAdapter;
-    private List<JourneyList.Journey> mJourneyList = new ArrayList<>();//行程列表
+    private List<Journey> mJourneyList = new ArrayList<>();//行程列表
 
     private static FindFragment instance;
 
@@ -47,7 +48,7 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     }
 
     @Override
-    public void showOrderList(List<JourneyList.Journey> journeyList) {
+    public void showOrderList(List<Journey> journeyList) {
 
         if (errorView != null)
             errorView.setVisibility(View.GONE);
@@ -99,24 +100,8 @@ public class FindFragment extends BaseFragment implements IFindFragment {
 
         mFindAdapter.setOnItemClickListener(new FindAdapter.OnItemClickListener() {
             @Override
-            public void onClick(JourneyList.Journey journey) {
-                Network.executePost("url", null, new ResultListener<String>() {
-                    @Override
-                    public void onSuccess(String data) {
-                        takeOrderSuccess();
-                    }
-
-                    @Override
-                    public void onFail(Throwable throwable) {
-                        takeOrderFail("操作出错");
-                        Log.e(TAG, "onFail: ", throwable.getCause());
-                    }
-
-                    @Override
-                    public void onCodeError(String msg) {
-                        takeOrderFail(msg);
-                    }
-                },String.class);
+            public void onClick(Journey journey) {
+              //toDo:jiedan
             }
         });
         return view;
@@ -125,21 +110,27 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     @Override
     public void onStart() {
         super.onStart();
-//        Network.getResponseJsonData("", new ResultListener<String>() {
-//            @Override
-//            public void onSuccess(String data) {
-//
-//            }
-//
-//            @Override
-//            public void onFail(Throwable throwable) {
-//
-//            }
-//
-//            @Override
-//            public void onCodeError(String msg) {
-//
-//            }
-//        });
+        Network.getResponseJsonData("http://192.168.1.110:8081/pickmeup/Discovery/findAll", new ResultListener<String>() {
+            @Override
+            public void onSuccess(String data) {
+                if (!data.equals("null")) {
+                    Gson gson = new Gson();
+                    List<Journey> journeyList = gson.fromJson(data, new TypeToken<List<Journey>>() {
+                    }.getType());
+
+                    showOrderList(journeyList);
+                }
+            }
+
+            @Override
+            public void onFail(Throwable throwable) {
+                loadOrderFail(throwable.getMessage());
+            }
+
+            @Override
+            public void onCodeError(String msg) {
+                loadOrderFail(msg);
+            }
+        });
     }
 }

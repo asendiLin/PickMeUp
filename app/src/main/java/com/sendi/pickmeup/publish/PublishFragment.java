@@ -92,7 +92,6 @@ public class PublishFragment extends BaseFragment implements IPublishFragment {
         btnPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ToDo:post info
                 String name=editName.getText().toString().trim();
                 String number=editNumber.getText().toString().trim();
                 String startTime=txtStartTime.getText().toString().trim();
@@ -112,7 +111,8 @@ public class PublishFragment extends BaseFragment implements IPublishFragment {
                 map.put("phone",number);
 
 
-                Network.executeGet("http://192.168.1.110:8081/pickmeup/journey/addJourney?start_time="+startTime+"&from_place="+startPlace+"&to_place="+endPlace+"&price="+price+"&u_name="+name+"&u_id="+u_id+"&phone="+number, new ResultListener<String>() {
+                Network.executeGet("http://192.168.1.110:8081/pickmeup/journey/addJourney?start_time="+startTime+"&from_place="+startPlace+"&to_place="+endPlace+"&price="+price+"&u_name="+name+"&u_id="+u_id+"&phone="+number,
+                        new ResultListener<String>() {
                     @Override
                     public void onSuccess(String data) {
                         Toast.makeText(mContext,"success!",Toast.LENGTH_SHORT).show();
