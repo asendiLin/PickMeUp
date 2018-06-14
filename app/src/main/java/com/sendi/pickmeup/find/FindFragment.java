@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -102,6 +103,7 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container) {
 
+        
         View view = View.inflate(mContext, R.layout.find_fragment, null);
         mRecyclerView = view.findViewById(R.id.find_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false));
@@ -116,10 +118,9 @@ public class FindFragment extends BaseFragment implements IFindFragment {
                 final Dialog dialog = new Dialog(mContext);
                 View takeDialogView = View.inflate(mContext, R.layout.take_order_dialog, null);
                 dialog.setContentView(takeDialogView,
-                        new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 Window window = dialog.getWindow();
                 WindowManager.LayoutParams lp = window.getAttributes();
-                lp.gravity = Gravity.CENTER;
                 lp.width = LinearLayout.LayoutParams.MATCH_PARENT;
                 lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
                 dialog.onWindowAttributesChanged(lp);
@@ -135,14 +136,12 @@ public class FindFragment extends BaseFragment implements IFindFragment {
                         String name = editName.getText().toString().trim();
                         String phoneNumber = editPhone.getText().toString().trim();
                         String payNumber = editPay.getText().toString().trim();
-
-                        Network.executeGet("http://192.168.1.110:8081/pickmeup/Discovery/?" +
-                                "u_id=" + UserManager.getInstance().getUserInfo(mContext).getUser_id()
-                                + "&c_phone=" + phoneNumber + "&c_name=" + name +
-                                "&j_id=" + journey.getJ_id() + "&pay_number=" + payNumber, new ResultListener<String>() {
+                        String j_id = journey.getJ_id();
+                        Network.executeGet("http://192.168.1.110:8081/pickmeup/Discovery/TakeOrder?"+"u_id="+UserManager.getInstance().getUserInfo(mContext).getUser_id()+"&c_phone="+phoneNumber+"&c_name="+name+"&j_id="+j_id+"&pay_number="+payNumber, new ResultListener<String>() {
                             @Override
                             public void onSuccess(String data) {
-
+                                dialog.dismiss();
+//                                Log.d(TAG, "onSuccess: "+data);
                             }
 
                             @Override
