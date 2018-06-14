@@ -115,7 +115,7 @@ public class PublishFragment extends BaseFragment implements IPublishFragment {
                         new ResultListener<String>() {
                     @Override
                     public void onSuccess(String data) {
-                        Toast.makeText(mContext,"success!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext,"发布成功",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
