@@ -112,13 +112,7 @@
 
     <Button
         android:id="@+id/btn_publish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_100"
-        android:layout_marginRight="@dimen/margin_100"
-        android:layout_marginTop="@dimen/margin_40"
-        android:background="@drawable/btn_shape"
-        android:text="@string/publish_str"
-        android:textColor="@color/colorThem"
+        android:text="@string/str_publish"
+        style="@style/me_btn_style"
         />
 </LinearLayout>

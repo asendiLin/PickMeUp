@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:id="@+id/ll_passenger"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
         android:layout_marginTop="@dimen/margin_40"
         android:gravity="center"
         android:orientation="horizontal"
@@ -104,7 +109,6 @@
             android:text="已接单"
             style="@style/passenger_txt_style" />
     </LinearLayout>
-
     <Button
         android:text="取消订单"
         android:id="@+id/btn_cancel"
@@ -115,4 +119,12 @@
         android:id="@+id/btn_finish"
         android:layout_marginTop="@dimen/margin_15"
         style="@style/me_btn_style"/>
+    </LinearLayout>
+    <TextView
+        android:gravity="center"
+        android:text="暂无订单"
+        android:id="@+id/txt_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 </LinearLayout>

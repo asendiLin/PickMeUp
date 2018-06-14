@@ -52,9 +52,9 @@ public class FeedbackActivity extends BaseActivity {
                 feedback = edit_feedback.getText().toString();
                 if (checkInput(feedback)) {
 
-                    HashMap<String, String> map = new HashMap<>();
-                    map.put("feedback", feedback);
-                    Network.executePost("", map, new ResultListener<String>() {
+//                    HashMap<String, String> map = new HashMap<>();
+//                    map.put("details", feedback);
+                    Network.executeGet("http://192.168.1.110:8081/pickmeup/user/feedback?details="+feedback, new ResultListener<String>() {
 
                         @Override
                         public void onSuccess(String data) {

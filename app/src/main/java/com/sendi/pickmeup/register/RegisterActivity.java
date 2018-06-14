@@ -13,7 +13,7 @@ import com.sendi.pickmeup.R;
 import com.sendi.pickmeup.base.BaseActivity;
 import com.sendi.pickmeup.listener.ResultListener;
 import com.sendi.pickmeup.login.LoginActivity;
-import com.sendi.pickmeup.network.Netowrk;
+import com.sendi.pickmeup.network.Network;
 import com.sendi.pickmeup.utils.ActivityController;
 
 import java.util.HashMap;
@@ -70,7 +70,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             map.put("username", username);
             map.put("psw", password);
             map.put("phoneNumber", phone);
-            Netowrk.executePost("http://192.168.1.109:8081/pickmeup/Login/userRegister?", map, new ResultListener<String>() {
+            Network.executePost("http://192.168.1.110:8081/pickmeup/Login/userRegister?", map, new ResultListener<String>() {
 
                 @Override
                 public void onSuccess(String data) {

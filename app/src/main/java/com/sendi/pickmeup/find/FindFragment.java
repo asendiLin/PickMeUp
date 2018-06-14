@@ -125,21 +125,21 @@ public class FindFragment extends BaseFragment implements IFindFragment {
     @Override
     public void onStart() {
         super.onStart();
-        Network.getResponseJsonData("", new ResultListener<String>() {
-            @Override
-            public void onSuccess(String data) {
-
-            }
-
-            @Override
-            public void onFail(Throwable throwable) {
-
-            }
-
-            @Override
-            public void onCodeError(String msg) {
-
-            }
-        });
+//        Network.getResponseJsonData("", new ResultListener<String>() {
+//            @Override
+//            public void onSuccess(String data) {
+//
+//            }
+//
+//            @Override
+//            public void onFail(Throwable throwable) {
+//
+//            }
+//
+//            @Override
+//            public void onCodeError(String msg) {
+//
+//            }
+//        });
     }
 }

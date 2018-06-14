@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import com.sendi.pickmeup.R;
 import com.sendi.pickmeup.base.BaseFragment;
+import com.sendi.pickmeup.entity.UserEntity;
 import com.sendi.pickmeup.me.FeedbackActivity;
 import com.sendi.pickmeup.me.JourneyActivity;
+import com.sendi.pickmeup.utils.UserManager;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -45,6 +47,11 @@ public class MeFragment extends BaseFragment {
                 startActivity(intentFeedback);
             }
         });
+        initData();
         return view;
+    }
+    private void initData() {
+        UserEntity userEntity = UserManager.getInstance().getUserInfo(mContext);
+        txt_name.setText(userEntity.getUsername());
     }
 }

@@ -4,27 +4,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+
 <android.support.v7.widget.RecyclerView
     android:id="@+id/rv_vehicle_own"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 </android.support.v7.widget.RecyclerView>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-</android.support.design.widget.CoordinatorLayout>
-    <ViewStub
-        android:id="@+id/view_stub_error"
+    <TextView
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="暂无订单"
+        android:id="@+id/txt_error"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout="@layout/error_layout"
         />
+
 </LinearLayout>

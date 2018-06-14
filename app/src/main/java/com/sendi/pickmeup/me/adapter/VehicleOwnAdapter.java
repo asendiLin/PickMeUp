@@ -2,13 +2,18 @@ package com.sendi.pickmeup.me.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sendi.pickmeup.R;
+import com.sendi.pickmeup.entity.Passenger;
 import com.sendi.pickmeup.entity.VehicleOwn;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,9 +22,9 @@ import java.util.List;
 
 public class VehicleOwnAdapter extends RecyclerView.Adapter<VehicleOwnAdapter.VehicleOwnViewHolder> {
     private Context mContext;
-    private List<VehicleOwn>  mVehicleOwnList;
+    private List<Passenger>  mVehicleOwnList;
 
-    public VehicleOwnAdapter(Context mContext, List<VehicleOwn> mVehicleOwnList) {
+    public VehicleOwnAdapter(Context mContext, List<Passenger> mVehicleOwnList) {
         this.mContext = mContext;
         this.mVehicleOwnList = mVehicleOwnList;
     }
@@ -32,14 +37,14 @@ public class VehicleOwnAdapter extends RecyclerView.Adapter<VehicleOwnAdapter.Ve
 
     @Override
     public void onBindViewHolder(VehicleOwnViewHolder holder, int position) {
-        final VehicleOwn vehicleOwn = mVehicleOwnList.get(position);
+        final Passenger passenger = mVehicleOwnList.get(position);
 
-        holder.txtStartTime.setText(vehicleOwn.getStart_time());
-        holder.txtStartPlace.setText(vehicleOwn.getFrom_place());
-        holder.txtEndPlace.setText(vehicleOwn.getTo_place());
-        holder.txtPrice.setText(vehicleOwn.getPrice());
-        holder.txtPassengerName.setText(vehicleOwn.getPassenger_name());
-        holder.txtPassengerPhone.setText(vehicleOwn.getPassenger_phone());
+        holder.txtStartTime.setText(strToDate(passenger.getStart_time()));
+        holder.txtStartPlace.setText(passenger.getFrom_place());
+        holder.txtEndPlace.setText(passenger.getTo_place());
+        holder.txtPrice.setText(passenger.getPrice());
+        holder.txtPassengerName.setText(passenger.getU_name());
+        holder.txtPassengerPhone.setText(passenger.getU_phone());
     }
 
 
@@ -68,4 +73,11 @@ public class VehicleOwnAdapter extends RecyclerView.Adapter<VehicleOwnAdapter.Ve
              txtPassengerPhone = itemView.findViewById(R.id.txt_passenger_phone);
          }
      }
+
+    public static String strToDate(Long ldate){
+        Date date = new Date(ldate);
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        String strDate = formatter.format(date);
+        return strDate;
+    }
 }

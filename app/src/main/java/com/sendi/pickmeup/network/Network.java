@@ -3,8 +3,10 @@ package com.sendi.pickmeup.network;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.sendi.pickmeup.base.BaseEntity;
 import com.sendi.pickmeup.listener.ResultListener;
@@ -117,11 +119,13 @@ public class Network {
                 String responseStr = response.body().string();
 
                 Gson gson = new Gson();
+//                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 
                 BaseEntity<R> baseEntity = gson.fromJson(responseStr, new TypeToken<BaseEntity<R>>() {
                 }.getType());
 
                 Result result = null;
+                Log.i("TAG==date", ""+baseEntity.getMsg());
                 if (baseEntity.isSuccess()) {
                     String jsonStr = gson.toJson(baseEntity.getData());
                     R data = gson.fromJson(jsonStr, clazz);
@@ -140,6 +144,7 @@ public class Network {
                     handler.sendMessage(message);
 //                    listener.onCodeError(baseEntity.getMsg());
 
+
                 }
             }
         });
@@ -151,7 +156,12 @@ public class Network {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                listener.onFail(e);
+//                listener.onFail(e);
+                Result result = new Result(e, listener);
+                Message message = new Message();
+                message.what = MESSAGE_ONFAIL;
+                message.obj = result;
+                handler.sendMessage(message);
             }
 
             @Override
@@ -166,9 +176,20 @@ public class Network {
 
                 if (baseEntity.isSuccess()) {
                     String jsonStr = gson.toJson(baseEntity.getData());
-                    listener.onSuccess(jsonStr);
+//                    listener.onSuccess(jsonStr);
+                     Result result = new Result(jsonStr, listener);
+                    Message message = new Message();
+                    message.what = MESSAGE_ONSUCCESS;
+                    message.obj = result;
+                    handler.sendMessage(message);
                 } else {
-                    listener.onCodeError(baseEntity.getMsg());
+//                    listener.onCodeError(baseEntity.getMsg());
+                    Result result = new Result(baseEntity.getMsg(), listener);
+                    Message message = new Message();
+                    message.what = MESSAGE_ONCODEERROR;
+                    message.obj = result;
+                    handler.sendMessage(message);
+
                 }
             }
         });

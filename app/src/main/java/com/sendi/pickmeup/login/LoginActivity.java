@@ -85,7 +85,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             final HashMap<String, String> map = new HashMap<>();
             map.put("username", username);
             map.put("psw", password);
-            Network.executePost("http://192.168.1.109:8081/pickmeup/Login/userLogin", map, new ResultListener<User>() {
+            Network.executePost("http://192.168.1.110:8081/pickmeup/Login/userLogin", map, new ResultListener<User>() {
 
                 @Override
                 public void onSuccess(User data) {
