@@ -2,6 +2,7 @@ package com.sendi.pickmeup.find;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -33,14 +34,15 @@ import java.util.List;
  * Created by sendi on 2018/6/7.
  */
 
-public class FindFragment extends BaseFragment implements IFindFragment {
+public class FindFragment extends BaseFragment implements IFindFragment,
+        SwipeRefreshLayout.OnRefreshListener{
 
 
     private static final String TAG = "FindFragment";
     private RecyclerView mRecyclerView;
     private FindAdapter mFindAdapter;
     private List<Journey> mJourneyList = new ArrayList<>();//行程列表
-
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private static FindFragment instance;
 
     private ViewStub mViewStub;
@@ -59,7 +61,6 @@ public class FindFragment extends BaseFragment implements IFindFragment {
 
     @Override
     public void showOrderList(List<Journey> journeyList) {
-
         if (errorView != null)
             errorView.setVisibility(View.GONE);
         if (mRecyclerView.getVisibility() != View.VISIBLE)
@@ -105,6 +106,10 @@ public class FindFragment extends BaseFragment implements IFindFragment {
 
         
         View view = View.inflate(mContext, R.layout.find_fragment, null);
+        mSwipeRefreshLayout=view.findViewById(R.id.refresh_layout);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorThem);
+        mSwipeRefreshLayout.setProgressViewOffset(true, 0, 10);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         mRecyclerView = view.findViewById(R.id.find_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false));
         mViewStub = view.findViewById(R.id.view_stub_error);
@@ -137,7 +142,10 @@ public class FindFragment extends BaseFragment implements IFindFragment {
                         String phoneNumber = editPhone.getText().toString().trim();
                         String payNumber = editPay.getText().toString().trim();
                         String j_id = journey.getJ_id();
-                        Network.executeGet("http://192.168.1.110:8081/pickmeup/Discovery/TakeOrder?"+"u_id="+UserManager.getInstance().getUserInfo(mContext).getUser_id()+"&c_phone="+phoneNumber+"&c_name="+name+"&j_id="+j_id+"&pay_number="+payNumber, new ResultListener<String>() {
+                        Network.executeGet("http://192.168.1.110:8081/pickmeup/Discovery/TakeOrder?"+
+                                "u_id="+UserManager.getInstance().getUserInfo(mContext).getUser_id()+
+                                "&c_phone="+phoneNumber+"&c_name="+name+"&j_id="+j_id+
+                                "&pay_number="+payNumber, new ResultListener<String>() {
                             @Override
                             public void onSuccess(String data) {
                                 dialog.dismiss();
@@ -191,6 +199,35 @@ public class FindFragment extends BaseFragment implements IFindFragment {
 
             @Override
             public void onCodeError(String msg) {
+                loadOrderFail(msg);
+            }
+        });
+    }
+
+    @Override
+    public void onRefresh() {
+        mSwipeRefreshLayout.setRefreshing(true);
+        Network.getResponseJsonData("http://192.168.1.110:8081/pickmeup/Discovery/findAll", new ResultListener<String>() {
+            @Override
+            public void onSuccess(String data) {
+                if (!data.equals("null")) {
+                    Gson gson = new Gson();
+                    List<Journey> journeyList = gson.fromJson(data, new TypeToken<List<Journey>>() {
+                    }.getType());
+                    showOrderList(journeyList);
+                }
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void onFail(Throwable throwable) {
+                mSwipeRefreshLayout.setRefreshing(false);
+                loadOrderFail(throwable.getMessage());
+            }
+
+            @Override
+            public void onCodeError(String msg) {
+                mSwipeRefreshLayout.setRefreshing(false);
                 loadOrderFail(msg);
             }
         });
