@@ -6,40 +6,22 @@ package com.sendi.pickmeup.entity;
 
 public class Journey {
 
-    String journey_id;
-    String driver_id;
-    boolean is_finish;
+    String j_id;
     String from_place;
-    String over_time;
+    boolean overTime;
+    boolean finish;
     String price;
-    String start_time;
+    Long start_time;
     String to_place;
-    String user_id;
+    String u_id;
     String wait_time;
-    String identity;//身份识别
 
-    public String getJourney_id() {
-        return journey_id;
+    public String getJ_id() {
+        return j_id;
     }
 
-    public void setJourney_id(String journey_id) {
-        this.journey_id = journey_id;
-    }
-
-    public String getDriver_id() {
-        return driver_id;
-    }
-
-    public void setDriver_id(String driver_id) {
-        this.driver_id = driver_id;
-    }
-
-    public boolean isIs_finish() {
-        return is_finish;
-    }
-
-    public void setIs_finish(boolean is_finish) {
-        this.is_finish = is_finish;
+    public void setJ_id(String j_id) {
+        this.j_id = j_id;
     }
 
     public String getFrom_place() {
@@ -50,12 +32,28 @@ public class Journey {
         this.from_place = from_place;
     }
 
-    public String getOver_time() {
-        return over_time;
+    public boolean isOverTime() {
+        return overTime;
     }
 
-    public void setOver_time(String over_time) {
-        this.over_time = over_time;
+    public void setOverTime(boolean overTime) {
+        this.overTime = overTime;
+    }
+
+    public Long getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(Long start_time) {
+        this.start_time = start_time;
+    }
+
+    public boolean isFinish() {
+        return finish;
+    }
+
+    public void setFinish(boolean finish) {
+        this.finish = finish;
     }
 
     public String getPrice() {
@@ -66,13 +64,7 @@ public class Journey {
         this.price = price;
     }
 
-    public String getStart_time() {
-        return start_time;
-    }
 
-    public void setStart_time(String start_time) {
-        this.start_time = start_time;
-    }
 
     public String getTo_place() {
         return to_place;
@@ -82,12 +74,12 @@ public class Journey {
         this.to_place = to_place;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getU_id() {
+        return u_id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setU_id(String u_id) {
+        this.u_id = u_id;
     }
 
     public String getWait_time() {
@@ -98,30 +90,18 @@ public class Journey {
         this.wait_time = wait_time;
     }
 
-    public String getIdentity() {
-        return identity;
-    }
-
-    public void setIdentity(String identity) {
-        this.identity = identity;
-    }
-
-
     @Override
     public String toString() {
         return "Journey{" +
-                "journey_id='" + journey_id + '\'' +
-                ", driver_id='" + driver_id + '\'' +
-                ", is_finish=" + is_finish +
+                "j_id='" + j_id + '\'' +
                 ", from_place='" + from_place + '\'' +
-                ", over_time='" + over_time + '\'' +
+                ", overTime='" + overTime + '\'' +
+                ", finish=" + finish +
                 ", price='" + price + '\'' +
                 ", start_time='" + start_time + '\'' +
                 ", to_place='" + to_place + '\'' +
-                ", user_id='" + user_id + '\'' +
+                ", u_id='" + u_id + '\'' +
                 ", wait_time='" + wait_time + '\'' +
-                ", identity='" + identity + '\'' +
                 '}';
     }
-
 }

@@ -21,6 +21,7 @@ import com.sendi.pickmeup.listener.ResultListener;
 import com.sendi.pickmeup.network.Network;
 import com.sendi.pickmeup.register.RegisterActivity;
 import com.sendi.pickmeup.utils.ActivityController;
+import com.sendi.pickmeup.utils.UserManager;
 
 import java.util.HashMap;
 
@@ -85,6 +86,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             final HashMap<String, String> map = new HashMap<>();
             map.put("username", username);
             map.put("psw", password);
+
             Network.executePost("http://192.168.1.110:8081/pickmeup/Login/userLogin", map, new ResultListener<User>() {
 
                 @Override
@@ -94,7 +96,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     startActivity(intent);
                     finish();
                     ActivityController.removeActivity(LoginActivity.this);
-
+                    UserManager.getInstance().saveUserInfo(LoginActivity.this,username,(String)data.getU_phone(),data.getU_id());
                 }
 
                 @Override

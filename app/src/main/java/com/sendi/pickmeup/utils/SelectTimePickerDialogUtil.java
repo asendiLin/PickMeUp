@@ -96,7 +96,7 @@ public class SelectTimePickerDialogUtil implements NumberPicker.OnValueChangeLis
      * 数据改变
      */
     private void onDateChanged() {
-        showSelectedTimeStr = mHour + " : " + mMinute;
+        showSelectedTimeStr = mHour + ":" + mMinute;
     }
 
     @Override

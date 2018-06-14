@@ -2,11 +2,13 @@ package com.sendi.pickmeup.me.fragment;
 
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,8 @@ public class VehicleOwnerFragment extends BaseFragment {
     public View initView(LayoutInflater inflater, ViewGroup container) {
         View view = View.inflate(mContext, R.layout.vehicle_own_fragment, null);
         rv_vehicle_own = view.findViewById(R.id.rv_vehicle_own);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        rv_vehicle_own.setLayoutManager(layoutManager);
         txt_error = view.findViewById(R.id.txt_error);
         initData();
         return view;

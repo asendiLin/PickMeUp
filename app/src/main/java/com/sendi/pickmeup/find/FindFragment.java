@@ -1,7 +1,9 @@
 package com.sendi.pickmeup.find;
 
 import android.annotation.SuppressLint;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,9 +56,10 @@ public class FindFragment extends BaseFragment implements IFindFragment {
             errorView.setVisibility(View.GONE);
         if (mRecyclerView.getVisibility() != View.VISIBLE)
             mRecyclerView.setVisibility(View.VISIBLE);
-
+        Log.d(TAG, "showOrderList: "+journeyList);
         mJourneyList.clear();
         mJourneyList.addAll(journeyList);
+        Log.d(TAG, "showOrderList: "+mJourneyList);
         mFindAdapter.notifyDataSetChanged();
     }
 
@@ -94,6 +97,7 @@ public class FindFragment extends BaseFragment implements IFindFragment {
 
         View view = View.inflate(mContext, R.layout.find_fragment, null);
         mRecyclerView = view.findViewById(R.id.find_recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false));
         mViewStub = view.findViewById(R.id.view_stub_error);
         mFindAdapter = new FindAdapter(mContext, mJourneyList);
         mRecyclerView.setAdapter(mFindAdapter);
@@ -113,11 +117,13 @@ public class FindFragment extends BaseFragment implements IFindFragment {
         Network.getResponseJsonData("http://192.168.1.110:8081/pickmeup/Discovery/findAll", new ResultListener<String>() {
             @Override
             public void onSuccess(String data) {
+                Log.d(TAG, "onSuccess: data==="+data);
                 if (!data.equals("null")) {
                     Gson gson = new Gson();
                     List<Journey> journeyList = gson.fromJson(data, new TypeToken<List<Journey>>() {
                     }.getType());
 
+                    Log.d(TAG, "onSuccess: "+journeyList);
                     showOrderList(journeyList);
                 }
             }

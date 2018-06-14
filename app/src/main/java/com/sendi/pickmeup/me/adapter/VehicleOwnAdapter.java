@@ -3,6 +3,7 @@ package com.sendi.pickmeup.me.adapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ public class VehicleOwnAdapter extends RecyclerView.Adapter<VehicleOwnAdapter.Ve
 
     @Override
     public VehicleOwnViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = View.inflate(mContext, R.layout.vehicle_own_item,null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.vehicle_own_item,parent,false);
         return new VehicleOwnViewHolder(view);
     }
 

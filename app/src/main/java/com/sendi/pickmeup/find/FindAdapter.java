@@ -2,6 +2,7 @@ package com.sendi.pickmeup.find;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import com.sendi.pickmeup.R;
 import com.sendi.pickmeup.entity.Journey;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,8 +36,8 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder
     @Override
     public FindViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = View.inflate(mContext, R.layout.find_item, null);
-
+//        View view = View.inflate(mContext, R.layout.find_item, null);
+        View view=LayoutInflater.from(mContext).inflate(R.layout.find_item,parent,false);
         return new FindViewHolder(view);
     }
 
@@ -42,7 +45,7 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder
     public void onBindViewHolder(FindViewHolder holder, int position) {
         final Journey journey = mJourneyList.get(position);
 
-        holder.txtStartTime.setText(journey.getStart_time());
+        holder.txtStartTime.setText(strToDate(journey.getStart_time()));
         holder.txtStartPlace.setText(journey.getFrom_place());
         holder.txtEndPlace.setText(journey.getTo_place());
         holder.txtPrice.setText(journey.getPrice());
@@ -83,5 +86,11 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.FindViewHolder
 
     interface OnItemClickListener {
         void onClick(Journey journey);
+    }
+    public static String strToDate(Long ldate){
+        Date date = new Date(ldate);
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        String strDate = formatter.format(date);
+        return strDate;
     }
 }
